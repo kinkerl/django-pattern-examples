@@ -1,43 +1,37 @@
 version: '3.8'
+x-app-base: &app-base
+  build: .
+  volumes:
+    - .:/app
+  environment:
+    DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+  depends_on:
+    db:
+      condition: service_started
+
 services:
   web:
-    build: .
+    <<: *app-base
     command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/app
     ports:
       - "8000:8000"
-    environment:
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
-    depends_on:
-      - db
 
   pytest:
-    build: .
+    <<: *app-base
     command: pytest
-    volumes:
-      - .:/app
-    environment:
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
-    depends_on:
-      - db
 
   lint:
-    build: .
+    <<: *app-base
     command: ruff format /app
-    volumes:
-      - .:/app
-    environment:
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
-    depends_on:
-      - db
+    depends_on: []   # lint doesn't need the database
 
   db:
     image: postgres:14
+    restart: unless-stopped
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      POSTGRES_HOST_AUTH_METHOD: trust
 
 volumes:
   postgres_data:
