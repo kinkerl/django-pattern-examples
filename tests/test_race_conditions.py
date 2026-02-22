@@ -7,6 +7,19 @@ from django.db.models import F
 
 from app.models import Account
 
+"""
+A race condition occurs when multiple threads or processes access and modify 
+shared resource concurrently, leading to unpredictable or incorrect results
+due to timing dependencies. These bugs are often hard to reproduce because
+they depend on the execution order of threads.
+
+These tests show what NOT to do and how to properly guard against this 
+problem.
+
+These tests require PostgreSQL or similar database to have proper 
+transaction handling across database connections.
+"""
+
 
 def deposit_naive(account_id, amount=100, delay=1):
     """
