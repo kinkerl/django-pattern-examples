@@ -65,3 +65,7 @@ ignore = [
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
+
+
+[tool.pytest]
+DJANGO_SETTINGS_MODULE = "django_pattern_examples.settings"
