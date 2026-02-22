@@ -1,0 +1,5 @@
+django
+pytest
+pytest-django
+psycopg2-binary
+ruff
