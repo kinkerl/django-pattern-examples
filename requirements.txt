@@ -1,4 +1,6 @@
+attrs
 django
+django-extended-choices
 pytest
 pytest-django
 psycopg2-binary
