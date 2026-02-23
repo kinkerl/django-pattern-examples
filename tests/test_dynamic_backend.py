@@ -27,5 +27,9 @@ def test_dynamic_backend(backend, config, result):
         owner="Nora", balance=0, backend_class=backend, backend_config=config
     )
 
+    # Get the dynamic backend from a model, based on the values in the database
     bknd = acc.backend
+
+    # Call a function on the backend and check the result to verify its
+    # working and switched.
     assert bknd.call() == result
