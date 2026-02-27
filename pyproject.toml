@@ -13,20 +13,16 @@ extend-select = [
     'S101', # assert used (ignored for tests, see below)
     'S110', # try-except-pass detected, consider logging the exception
     'B',    # flake8-bugbear 
-    # 'COM', conflicts with black
     'C4',  # flake8-comprehensions 
     'T10', # flake8-debugger
-    # 'DJ', null TextField, no __str__ on model
     'EXE', # flake8-executable
     'FA',  # flake8-future-annotations
     'ISC', # flake8-implicit-str-concat
     'PIE', # flake8-pie (misc lints)
     'T20', # flake8-print
     'PT',  # flake8-pytest-style
-    # 'Q', redundant with black
     'RSE', # flake8-raise
     'RET', # flake8-return
-    #'SLF', we use model._meta too often
     'PLE', # pylint ('E' subset)
     'PLW', # pylint ('W' subset)
     'FLY', # static join to f-string 
